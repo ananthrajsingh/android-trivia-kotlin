@@ -48,6 +48,15 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
+    // COMPLETED (01) Create the new TitleFragment
+    // Select File->New->Fragment->Fragment (Blank)
+
+    // COMPLETED (02) Clean up the new TitleFragment
+    // In our new TitleFragment
+
+    // COMPLETED (03) Use DataBindingUtil.inflate to inflate and return the titleFragment in onCreateView
+    // In our new TitleFragment
+    // R.layout.fragment_title
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
         return NavigationUI.navigateUp(navController, appBarConfiguration)
