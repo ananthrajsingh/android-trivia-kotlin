@@ -27,6 +27,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
                 <!-- COMPLETED (04) Add a fragment tag for the titleFragment in the LinearLayout
                      Use @+id/titleFragment for the android:id
                      Use com.example.android.navigation.TitleFragment for the android:name
