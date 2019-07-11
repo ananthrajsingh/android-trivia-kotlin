@@ -76,8 +76,7 @@ class GameFragment : Fragment() {
         binding.game = this
 
         // Set the onClickListener for the submitButton
-        binding.submitButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
-        { view: View ->
+        binding.submitButton.setOnClickListener { view: View ->
             val checkedId = binding.questionRadioGroup.checkedRadioButtonId
             // Do nothing if nothing is checked (id == -1)
             if (-1 != checkedId) {
@@ -98,17 +97,12 @@ class GameFragment : Fragment() {
                         binding.invalidateAll()
                     } else {
                         // We've won!  Navigate to the gameWonFragment.
-                        // COMPLETED (05) Find the navController from the view and navigate to the gameWonFragment
-                        // call view.findNavController
-                        // navigate to R.id.action_gameFragment_to_gameWonFragment
-                        view.findNavController().navigate(R.id.action_gameFragment_to_gameWonFragment)
+
+                        view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment(numQuestions,questionIndex))
                     }
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
-                    // COMPLETED (06) Find the navController from the view and navigate to the gameOverFragment
-                    // call view.findNavController
-                    // navigate to R.id.action_gameFragment_to_gameOverFragment
-                    view.findNavController().navigate(R.id.action_gameFragment_to_gameOverFragment2)
+                    view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment())
                 }
             }
         }
@@ -132,4 +126,5 @@ class GameFragment : Fragment() {
         answers.shuffle()
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
     }
+
 }
