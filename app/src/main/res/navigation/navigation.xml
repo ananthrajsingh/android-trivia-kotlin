@@ -20,34 +20,47 @@
         android:name="com.example.android.navigation.GameFragment"
         android:label="@string/android_trivia"
         tools:layout="@layout/fragment_game">
-        <!-- COMPLETED (03) Create an Action connecting the GameFragment to the GameWonFragment
-             Go to the navigation editor and hover over the GameFragment.  Click on the
-             connection point and drag the action line to the GameWonFragment.
-        -->
-        <!-- COMPLETED (04) Create an Action connecting the GameFragment to the GameOverFragment
-             Go to the navigation editor and hover over the GameFragment.  Click on the
-             connection point and drag the action line to the GameOverFragment.
-        -->
+        <action
+            android:id="@+id/action_gameFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment"
+            app:popUpTo="@+id/gameFragment"
+            app:popUpToInclusive="true" />
+        <!-- COMPLETED (01) Add popUpTo gameFragment with inclusive=true
+             Go to the editor, select PopTo GameFragment in the attributes pane
+             with the inclusive flag checked. -->
         <action
             android:id="@+id/action_gameFragment_to_gameWonFragment"
-            app:destination="@id/gameWonFragment" />
-        <action
-            android:id="@+id/action_gameFragment_to_gameOverFragment2"
-            app:destination="@id/gameOverFragment2" />
-    </fragment>
+            app:destination="@id/gameWonFragment"
+            app:popUpTo="@+id/gameFragment"
+            app:popUpToInclusive="true" />
+        <!-- COMPLETED (02) Add popUpTo gameFragment with inclusive=true
+             Go to the editor, select PopTo GameFragment in the attributes pane
+             with the inclusive flag checked. -->
+
     <fragment
         android:id="@+id/gameWonFragment"
         android:name="com.example.android.navigation.GameWonFragment"
-        android:label="fragment_game_won"
-        tools:layout="@layout/fragment_game_won" />
+        android:label="@string/android_trivia"
+        tools:layout="@layout/fragment_game_won">
+        <!-- COMPLETED (04) Add an action connecting the gameWonFragment to the gameFragment
+             Select PopTo TitleFragment in the editor with inclusive turned off -->
+        <action
+            android:id="@+id/action_gameWonFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@+id/gameFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/gameOverFragment2"
         android:name="com.example.android.navigation.GameOverFragment"
-        android:label="fragment_game_over"
-        tools:layout="@layout/fragment_game_over" />
-    <!-- COMPLETED (01) Add the GameWonFragment to the Navigation Graph
-             Go to the navigation editor and click the add button.  Add fragment_game_won. -->
-    <!-- COMPLETED (02) Add the GameOverFragment to the Navigation Graph
-             Go to the navigation editor and click the add button.  Add fragment_game_over. -->
+        android:label="@string/android_trivia"
+        tools:layout="@layout/fragment_game_over">
+        <!-- COMPLETED (03) Add an action connecting the gameOverFragment to the gameFragment
+             Select PopTo TitleFragment in the editor with inclusive turned off -->
+        <action
+            android:id="@+id/action_gameOverFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@+id/gameFragment" />
+    </fragment>
 
 </navigation>
