@@ -33,33 +33,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        drawerLayout = binding.drawerLayout
+        // COMPLETED (01) Find the navController from myNavHostFragment
+        // Since we're using KTX, you can call this.findNavController
         val navController = this.findNavController(R.id.myNavHostFragment)
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
-        // prevent nav gesture if not on start destination
-        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, bundle: Bundle? ->
-            if (nd.id == nc.graph.startDestination) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            } else {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            }
-        }
-        NavigationUI.setupWithNavController(binding.navView, navController)
+        // COMPLETED (02) Link the navController to our ActionBar
+        // By calling NavigationUI.setupActionBarWithNavController
+        NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
-    // COMPLETED (01) Create the new TitleFragment
-    // Select File->New->Fragment->Fragment (Blank)
-
-    // COMPLETED (02) Clean up the new TitleFragment
-    // In our new TitleFragment
-
-    // COMPLETED (03) Use DataBindingUtil.inflate to inflate and return the titleFragment in onCreateView
-    // In our new TitleFragment
-    // R.layout.fragment_title
+    // COMPLETED (03) Override onSupportNavigateUp
+    // Find the navController and then call navController.navigateUp
+    
     override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.myNavHostFragment)
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
+        val navController : NavController = findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
     }
 
-}
