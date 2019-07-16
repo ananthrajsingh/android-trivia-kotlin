@@ -56,10 +56,12 @@
             app:popUpTo="@+id/titleFragment"/>
         <argument
             android:name="numQuestions"
-            app:argType="integer" />
+            app:argType="integer"
+            />
         <argument
             android:name="numCorrect"
-            app:argType="integer" />
+            app:argType="integer"
+            />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
