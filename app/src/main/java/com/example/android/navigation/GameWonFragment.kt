@@ -44,10 +44,15 @@ class GameWonFragment : Fragment() {
                 inflater, R.layout.fragment_game_won, container, false)
 
         binding.nextMatchButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(
-                    GameWonFragmentDirections.actionGameWonFragmentToGameFragment())
+            // COMPLETED (10) Replace action ID with actionGameWonFragmentToGameFragment
+            // From GameWonFragmentDirections
+            view.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment())
         }
-        setHasOptionsMenu(true)
+        val args = GameWonFragmentArgs.fromBundle(arguments!!)
+        // COMPLETED (08) Add and show toast to get the GameWonFragmentArgs from the arguments Bundle
+        // "NumCorrect: ${args.numCorrect}, NumQuestions: ${args.numQuestions}"
+        Toast.makeText(context, "NumCorrect: ${args.numCorrect}, NumQuestions: ${args.numQuestions}", Toast.LENGTH_LONG).show()
+
         return binding.root
     }
 

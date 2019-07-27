@@ -24,30 +24,47 @@
             android:id="@+id/action_gameFragment_to_gameOverFragment"
             app:destination="@id/gameOverFragment"
             app:popUpTo="@+id/gameFragment"
-            app:popUpToInclusive="true" />
-        <!-- COMPLETED (01) Add popUpTo gameFragment with inclusive=true
-             Go to the editor, select PopTo GameFragment in the attributes pane
-             with the inclusive flag checked. -->
+            app:popUpToInclusive="true" >
+
+        </action>
+
         <action
             android:id="@+id/action_gameFragment_to_gameWonFragment"
             app:destination="@id/gameWonFragment"
             app:popUpTo="@+id/gameFragment"
-            app:popUpToInclusive="true" />
-        <!-- COMPLETED (02) Add popUpTo gameFragment with inclusive=true
-             Go to the editor, select PopTo GameFragment in the attributes pane
-             with the inclusive flag checked. -->
+            app:popUpToInclusive="true" >
+
+        </action>
+
+    </fragment>
 
     <fragment
         android:id="@+id/gameWonFragment"
         android:name="com.example.android.navigation.GameWonFragment"
         android:label="@string/android_trivia"
         tools:layout="@layout/fragment_game_won">
-        <!-- COMPLETED (04) Add an action connecting the gameWonFragment to the gameFragment
-             Select PopTo TitleFragment in the editor with inclusive turned off -->
+        <!-- COMPLETED (05) Add the numQuestions argument from the nav editor
+             Select the gameWonFragment in the nav editor.  Click the little triangle next to
+             arguments to expand the argument section.  Add the numQuestions argument with
+             integer type -->
+        <!-- COMPLETED (06) Add the numCorrect argument from the nav editor
+             Select the gameWonFragment in the nav editor.  Click the little triangle next to
+             arguments to expand the argument section.  Add the numCorrect argument with
+             integer type -->
         <action
             android:id="@+id/action_gameWonFragment_to_gameFragment"
             app:destination="@id/gameFragment"
-            app:popUpTo="@+id/gameFragment" />
+            app:popUpTo="@+id/titleFragment">
+        </action>
+        <argument
+            android:name="numQuestions"
+            app:argType="integer"
+             />
+        <argument
+            android:name="numCorrect"
+            app:argType="integer"
+             />
+
     </fragment>
 
     <fragment
@@ -60,7 +77,9 @@
         <action
             android:id="@+id/action_gameOverFragment_to_gameFragment"
             app:destination="@id/gameFragment"
-            app:popUpTo="@+id/gameFragment" />
+            app:popUpTo="@+id/titleFragment" />
+
+
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

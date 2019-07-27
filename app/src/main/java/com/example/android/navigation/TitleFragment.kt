@@ -21,15 +21,17 @@ class TitleFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding: FragmentTitleBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_title, container, false)
-        binding.playButton.setOnClickListener (
-                Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment))
-        // COMPLETED (02) Create the new menu resource
-        // Right click on the res folder within the Android project and select New Resource File
-        // Name it overflow_menu with resource type menu.  Add an About menu item with the ID of
-        // the aboutFragment.
-        // COMPLETED (03) Call setHasOptionsMenu(true)
-        // This tells Android that our fragment has an Options Menu, so it will call
-        // onCreateOptionsMenu
+        binding.playButton.setOnClickListener {
+            run {
+                TitleFragmentDirections.actionTitleFragmentToGameFragment()
+            }
+        }
+                // TODO (11) Replace action ID with actionTitleFragmentToGameFragment
+                // From TitleFragmentDirections
+                // We will have to switch this to using an anonymous function, since
+                // createNavigateOnClickListener cannot take NavDirections
+
+
         setHasOptionsMenu(true)
         return binding.root
     }
