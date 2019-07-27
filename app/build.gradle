@@ -19,10 +19,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 // COMPLETED (02) Add the apply plugin statement for safeargs
 // androidx.navigation.safeargs
 apply plugin: "androidx.navigation.safeargs"
+
 
 android {
     compileSdkVersion 28
@@ -62,6 +64,10 @@ dependencies {
 
     // Material Design
     implementation "com.google.android.material:material:$version_material"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
+    // TODO (01) Add the dependencies for navigation fragment ktx and navigation UI ktx
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"

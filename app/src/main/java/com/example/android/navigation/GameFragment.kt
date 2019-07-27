@@ -107,6 +107,7 @@ class GameFragment : Fragment() {
                     // Game over! A wrong answer sends us to the gameOverFragment.
                     // COMPLETED (04) Replace the action ID for the game over state with GameFragmentDirections
                     // GameFragmentDirections.actionGameFragmentToGameOverFragment
+
                     view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment())
                 }
             }
@@ -131,4 +132,5 @@ class GameFragment : Fragment() {
         answers.shuffle()
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
     }
+
 }
