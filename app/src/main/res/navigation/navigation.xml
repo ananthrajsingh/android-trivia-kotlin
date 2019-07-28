@@ -59,11 +59,11 @@
         <argument
             android:name="numQuestions"
             app:argType="integer"
-             />
+            />
         <argument
             android:name="numCorrect"
             app:argType="integer"
-             />
+            />
 
     </fragment>
 
