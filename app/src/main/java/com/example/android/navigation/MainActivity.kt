@@ -33,11 +33,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        drawerLayout = binding.drawerLayout
+        // Since we're using KTX, you can call this.findNavController
         val navController = this.findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
-        // COMPLETED (01) call navController.addOnDestinationChangedListener with an anonymous function
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             run {
                 if (destination.id == controller.graph.startDestination) {
@@ -49,12 +48,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // COMPLETED (02) in the anonymous function unlock/lock the drawer layout if the id matches the start destination
-        NavigationUI.setupWithNavController(binding.navView, navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.myNavHostFragment)
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
+        val navController : NavController = findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
     }
-}
+
