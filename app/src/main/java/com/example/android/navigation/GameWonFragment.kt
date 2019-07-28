@@ -42,9 +42,11 @@ class GameWonFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: FragmentGameWonBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_game_won, container, false)
+
         binding.nextMatchButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(
-                    GameWonFragmentDirections.actionGameWonFragmentToGameFragment())
+            // COMPLETED (10) Replace action ID with actionGameWonFragmentToGameFragment
+            // From GameWonFragmentDirections
+            view.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment())
         }
         // COMPLETED (01) Add setHasOptionsMenu(true)
         // This allows onCreateOptionsMenu to be called
@@ -55,15 +57,11 @@ class GameWonFragment : Fragment() {
 
     public fun getShareIntent() : Intent {
         var args = GameWonFragmentArgs.fromBundle(arguments!!)
-//        val shareIntent = Intent(Intent.ACTION_SEND)
-//        shareIntent.type = "text/plain"
-//        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_success_text, args.numCorrect, args.numQuestions))
-//        return shareIntent
+
         return ShareCompat.IntentBuilder.from(activity)
                 .setText(getString(R.string.share_success_text, args.numCorrect, args.numQuestions))
                 .setType("text/plain")
                 .intent
-
 
     }
 
@@ -87,11 +85,4 @@ class GameWonFragment : Fragment() {
 
     }
 
-    // COMPLETED (02) Create getShareIntent method
-    // COMPLETED (03) Create shareSuccess method
-    // COMPLETED (04) Override and fill out onCreateOptionsMenu
-    // Inflate the winner_menu and set the share menu item to invisible if the activity doesn't
-    // resolve
-    // COMPLETED (05) Override onOptionsItemSelected
-    // Call the shareSuccess method when the item id matches R.id.share
 }
