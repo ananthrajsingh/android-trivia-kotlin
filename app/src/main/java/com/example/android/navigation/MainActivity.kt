@@ -20,35 +20,42 @@ import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation
+
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    // COMPLETED (05) Add private lateinit vars drawerLayout and appBarConfiguration
+
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var appBarConfiguration : AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        // COMPLETED (06) Initialize drawerLayout var from binding
-        drawerLayout = binding.drawerLayout
+
+        // Since we're using KTX, you can call this.findNavController
         val navController = this.findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
-        // COMPLETED (07) Add the DrawerLayout as the second parameter to setupActionBarWithNavController
-//        NavigationUI.setupActionBarWithNavController(this, navController)
-        // COMPLETED (08) Create appBarConfiguration with the navController.graph and drawerLayout
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
-        // COMPLETED (09) Hook the navigation UI up to the navigation view. (navView)
-        NavigationUI.setupWithNavController(binding.navView, navController)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            run {
+                if (destination.id == controller.graph.startDestination) {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                }
+                else {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
+            }
+        }
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.myNavHostFragment)
-        // COMPLETED (10) Replace navController.navigateUp with NavigationUI.navigateUp with drawerLayout param
-        return NavigationUI.navigateUp(navController, drawerLayout)
+        val navController : NavController = findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
     }
-}
+
